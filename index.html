@@ -116,6 +116,25 @@ button,
   user-select: none;
 }
 
+/* A real, full-card hit surface keeps mobile Safari/WeChat from reducing the
+   tappable area to whichever transformed child happens to be front-most. */
+.card-touch-surface {
+  position: absolute;
+  inset: -0.12rem;
+  z-index: 20;
+  display: block;
+  border-radius: 0.95rem;
+  background: rgba(255, 255, 255, 0.001);
+  cursor: inherit;
+  transform: translateZ(0.5rem);
+  transform-style: preserve-3d;
+}
+
+.card-scene[data-state="OPENING"] .card-touch-surface,
+.card-scene[data-state="OPEN"] .card-touch-surface {
+  pointer-events: none;
+}
+
 .card-scene[data-state="CLOSED"],
 .card-scene[data-state="ALIGNING"] {
   cursor: pointer;
@@ -159,6 +178,54 @@ button,
   box-shadow: inset 0 0 0 0.36rem rgba(170, 126, 54, 0.22);
   backface-visibility: hidden;
   transform: rotateY(180deg) translateZ(0.22rem);
+}
+
+.back-easter-egg {
+  align-self: center;
+  justify-self: center;
+  width: min(76%, 20rem);
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1rem, 4vw, 1.75rem);
+  color: #5a4035;
+  text-align: center;
+  background: rgba(255, 252, 243, 0.8);
+  border: 0.0625rem solid rgba(196, 154, 82, 0.38);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.7rem 1.8rem rgba(78, 49, 32, 0.08);
+  backdrop-filter: blur(0.1rem);
+}
+
+.back-easter-egg p {
+  margin: 0.55rem 0;
+  font-size: clamp(0.82rem, 2.1vw, 1.03rem);
+  line-height: 1.9;
+  letter-spacing: 0.08em;
+}
+
+.back-easter-egg .back-surprise {
+  margin-top: 0.75rem;
+  color: #8d6831;
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.back-easter-egg .back-signature {
+  margin-top: 1rem;
+  color: rgba(68, 93, 78, 0.78);
+  font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+}
+
+.back-seal {
+  display: grid;
+  width: clamp(2.35rem, 6vw, 3rem);
+  aspect-ratio: 1;
+  margin: 0 auto 0.7rem;
+  color: #fffaf0;
+  background: #b98747;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.16rem rgba(255, 250, 240, 0.42);
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  place-items: center;
 }
 
 .card-edge {
@@ -732,6 +799,35 @@ button,
     perspective: 90rem;
   }
 
+  .back-easter-egg {
+    width: 86%;
+    padding: 1rem 0.7rem;
+  }
+
+  .back-easter-egg p {
+    margin: 0.4rem 0;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    letter-spacing: 0.025em;
+  }
+
+  .back-easter-egg .back-surprise {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .back-easter-egg .back-signature {
+    margin-top: 0.7rem;
+    font-size: 0.68rem;
+  }
+
+  .back-seal {
+    width: 2.25rem;
+    margin-bottom: 0.45rem;
+    font-size: 1.1rem;
+  }
+
   .right-page,
   .cover-face {
     border-radius: 0.28rem;
@@ -879,11 +975,20 @@ button,
               aria-expanded="false"
               data-state="CLOSED"
             >
-              <section class="closed-back" aria-hidden="true"></section>
+              <section class="closed-back" aria-label="藏在卡背的小祝福">
+                <div class="back-easter-egg">
+                  <span class="back-seal" aria-hidden="true">福</span>
+                  <p class="back-surprise">被您发现啦</p>
+                  <p>卡背还藏着一句：</p>
+                  <p>愿爷爷往后的每一天，<br />都比今天多一点欢喜。</p>
+                  <p class="back-signature">小小彩蛋 · Carina</p>
+                </div>
+              </section>
               <span class="card-edge card-edge--top" aria-hidden="true"></span>
               <span class="card-edge card-edge--right" aria-hidden="true"></span>
               <span class="card-edge card-edge--bottom" aria-hidden="true"></span>
               <span class="card-edge card-edge--left" aria-hidden="true"></span>
+              <span class="card-touch-surface" aria-hidden="true"></span>
 
               <div class="book" id="birthdayCard">
           <section class="right-page" aria-label="生日祝福">
