@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="送给爷爷的 2026 年生日卡"
+    />
+    <title>爷爷，生日快乐</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <main class="card-stage">
+      <div
+        class="card-scene"
+        id="cardScene"
+        role="button"
+        tabindex="0"
+        aria-label="打开爷爷的生日卡"
+        aria-expanded="false"
+        data-state="CLOSED"
+      >
+        <div class="book" id="birthdayCard">
+          <section class="right-page" aria-label="生日祝福">
+            <div class="page-edge" aria-hidden="true"></div>
+            <div class="message" id="birthdayMessage">
+              <p>又陪您过了一岁生日。</p>
+              <p>愿您身体健康，平安顺遂，</p>
+              <p>希望以后的每一年，我们都能这样一起过生日。</p>
+              <p>爷爷，生日快乐。</p>
+              <p class="signature">2026 · Carina</p>
+            </div>
+          </section>
+
+          <div class="cover" id="cardCover" aria-hidden="true">
+            <section class="cover-face cover-front">
+              <span class="cover-flourish cover-flourish--top"></span>
+              <div class="cover-copy">
+                <span class="cover-emblem" aria-hidden="true"></span>
+                <h1>爷爷，生日快乐</h1>
+                <span class="gold-rule" aria-hidden="true"></span>
+                <p>点击打开生日卡</p>
+              </div>
+              <span class="cover-flourish cover-flourish--bottom"></span>
+            </section>
+
+            <section class="cover-face cover-back left-page" aria-label="家庭合照">
+              <div class="photo-frame">
+                <img
+                  id="familyPhoto"
+                  src="assets/family-photo.png"
+                  alt="爷爷和孙女一起庆祝生日的家庭合照"
+                />
+                <div class="photo-fallback" aria-hidden="true">
+                  <span></span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="particles" id="particles" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <button
+        class="music-toggle"
+        id="musicToggle"
+        type="button"
+        aria-label="静音背景音乐"
+        aria-pressed="false"
+        hidden
+      >
+        <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 9.5v5h3.6l4.9 4V5.5l-4.9 4H4Z" />
+          <path class="sound-wave" d="M16 8.2c1.2 1 1.8 2.2 1.8 3.8S17.2 14.8 16 15.8" />
+        </svg>
+      </button>
+    </main>
+  </body>
+</html>
